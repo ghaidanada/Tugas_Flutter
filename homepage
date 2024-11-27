@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Multiple Screens Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const FirstScreen(), // Halaman pertama yang akan ditampilkan saat aplikasi dimulai
+    );
+  }
+}
+
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Pindah ke SecondScreen ketika tombol ditekan
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SecondScreen()),
+            );
+          },
+          child: const Text('Go to Second Screen'),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Pindah ke FirstScreen ketika tombol ditekan
+            Navigator.pop(context); // Kembali ke halaman sebelumnya (FirstScreen)
+          },
+          child: const Text('Back to First Screen'),
+        ),
+      ),
+    );
+  }
+}
